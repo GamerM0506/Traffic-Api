@@ -1,8 +1,0 @@
-export declare enum TrafficSignGroup {
-    PROHIBITION = "PROHIBITION",
-    DANGER = "DANGER",
-    COMMAND = "COMMAND",
-    INSTRUCTION = "INSTRUCTION",
-    AUXILIARY = "AUXILIARY",
-    MARKING = "MARKING"
-}
