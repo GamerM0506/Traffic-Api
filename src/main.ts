@@ -16,6 +16,14 @@ async function bootstrap() {
             forbidNonWhitelisted: true,
         }),
     );
+    app.enableCors({
+        origin: [
+            'http://localhost:63354',
+        ],
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        preflightContinue: false,
+        optionsSuccessStatus: 204,
+    });
     app.useGlobalFilters(new DomainExceptionFilter());
     const port = process.env.PORT || 3000;
     await app.listen(port, '0.0.0.0');
