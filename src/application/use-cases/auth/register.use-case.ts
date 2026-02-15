@@ -17,9 +17,8 @@ export class RegisterUseCase {
     ) { }
 
     async execute(dto: RegisterRequestDto): Promise<UserResponseDto> {
-         console.log("data",dto);
         const emailVo = new Email(dto.email);
-       
+
         const existingUser = await this.userRepo.findByEmail(emailVo);
         if (existingUser) {
             throw new UserAlreadyExistsException(dto.email);
@@ -44,7 +43,7 @@ export class RegisterUseCase {
 
         const savedUser = await this.userRepo.save(newUser);
 
-        await this.emailService.sendVerificationCode(savedUser.email.getValue(), otpCode);
+        this.emailService.sendVerificationCode(savedUser.email.getValue(), otpCode);
 
         return {
             id: savedUser.id!,
