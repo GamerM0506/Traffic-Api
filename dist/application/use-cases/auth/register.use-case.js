@@ -24,7 +24,6 @@ let RegisterUseCase = class RegisterUseCase {
         this.emailService = emailService;
     }
     async execute(dto) {
-        console.log("data", dto);
         const emailVo = new value_objects_1.Email(dto.email);
         const existingUser = await this.userRepo.findByEmail(emailVo);
         if (existingUser) {
@@ -34,7 +33,7 @@ let RegisterUseCase = class RegisterUseCase {
         const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
         const newUser = new user_entity_1.User(null, emailVo, new value_objects_1.Password(hashedPassword), dto.fullName || null, new value_objects_1.Url(null), undefined, undefined, null, false, otpCode);
         const savedUser = await this.userRepo.save(newUser);
-        await this.emailService.sendVerificationCode(savedUser.email.getValue(), otpCode);
+        this.emailService.sendVerificationCode(savedUser.email.getValue(), otpCode);
         return {
             id: savedUser.id,
             email: savedUser.email.getValue(),

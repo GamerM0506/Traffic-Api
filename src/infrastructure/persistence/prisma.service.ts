@@ -10,8 +10,6 @@ dotenv.config();
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
     constructor() {
-        const dbUrl = process.env.DATABASE_URL;
-        console.log('🚀 Database URL check:', dbUrl ? 'Found' : 'NOT FOUND'); 
         const pool = new Pool({ connectionString: process.env.DATABASE_URL });
         const adapter = new PrismaPg(pool);
         super({ adapter });

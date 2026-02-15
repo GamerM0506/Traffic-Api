@@ -1,15 +1,19 @@
 import { Module } from '@nestjs/common';
+import { ChangePasswordUseCase } from 'src/application/use-cases/auth/change-password.use-case';
+import { ForgotPasswordUseCase } from 'src/application/use-cases/auth/forgot-password.use-case';
+import { LoginUseCase } from 'src/application/use-cases/auth/login.use-case';
+import { RegisterUseCase } from 'src/application/use-cases/auth/register.use-case';
+import { ResetPasswordUseCase } from 'src/application/use-cases/auth/reset-password.use-case';
+import { VerifyAccountUseCase } from 'src/application/use-cases/auth/verify-account.use-case';
+import { GetLicenseCategoriesUseCase } from 'src/application/use-cases/license/get-license-categories.use-case';
+import { AuthController } from 'src/presentation/controllers/auth.controller';
 import { PrismaService } from '../persistence/prisma.service';
+import { LicenseRepository } from '../repositories/license.repository';
 import { PrismaUserRepository } from '../repositories/prisma-user.repository';
 import { JwtAuthService } from '../services/jwt-auth.service';
 import { NodemailerEmailService } from '../services/nodemailer-email.service';
-import { RegisterUseCase } from '../../application/use-cases/auth/register.use-case';
-import { LoginUseCase } from '../../application/use-cases/auth/login.use-case';
-import { VerifyAccountUseCase } from '../../application/use-cases/auth/verify-account.use-case';
-import { ChangePasswordUseCase } from '../../application/use-cases/auth/change-password.use-case';
-import { ForgotPasswordUseCase } from '../../application/use-cases/auth/forgot-password.use-case';
-import { ResetPasswordUseCase } from '../../application/use-cases/auth/reset-password.use-case';
-import { AuthController } from 'src/presentation/controllers/auth.controller';
+import { LicenseController } from 'src/presentation/controllers/license.controller';
+
 
 @Module({
     providers: [
@@ -17,6 +21,10 @@ import { AuthController } from 'src/presentation/controllers/auth.controller';
         {
             provide: 'IUserRepository',
             useClass: PrismaUserRepository,
+        },
+        {
+            provide: 'ILicenseRepository',
+            useClass: LicenseRepository,
         },
         {
             provide: 'IAuthService',
@@ -32,8 +40,12 @@ import { AuthController } from 'src/presentation/controllers/auth.controller';
         ChangePasswordUseCase,
         ForgotPasswordUseCase,
         ResetPasswordUseCase,
+        GetLicenseCategoriesUseCase,
     ],
-    controllers: [AuthController],
+    controllers: [
+        AuthController,
+        LicenseController
+    ],
     exports: [
         RegisterUseCase,
         LoginUseCase,
@@ -41,6 +53,7 @@ import { AuthController } from 'src/presentation/controllers/auth.controller';
         ChangePasswordUseCase,
         ForgotPasswordUseCase,
         ResetPasswordUseCase,
+        GetLicenseCategoriesUseCase,
     ],
 })
 export class AuthModule { }

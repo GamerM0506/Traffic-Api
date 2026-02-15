@@ -8,7 +8,11 @@ const dotenv = require("dotenv");
 dotenv.config();
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
-    app.enableCors();
+    app.enableCors({
+        origin: '*',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
+    });
     app.setGlobalPrefix('api/v1');
     app.useGlobalPipes(new common_1.ValidationPipe({
         whitelist: true,
@@ -18,7 +22,7 @@ async function bootstrap() {
     app.useGlobalFilters(new domain_exception_filter_1.DomainExceptionFilter());
     const port = process.env.PORT || 3000;
     await app.listen(port, '0.0.0.0');
-    console.log(`Server is running at http://localhost:${port}/api/v1`);
+    console.log(`🚀 Server is "on air" at: https://your-railway-link.up.railway.app/api/v1`);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map
