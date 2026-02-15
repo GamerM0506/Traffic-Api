@@ -4,5 +4,4 @@ export declare class LicenseCategoryResponseDto {
     name: string;
     description: string;
     totalExams: number;
-    iconUrl?: string;
 }

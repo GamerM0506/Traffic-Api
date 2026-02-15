@@ -1,9 +1,12 @@
 import { ILicenseRepository } from '../../../domain/repositories/license.repository.interface';
 import { LicenseCategoryResponseDto } from '../../dtos/license/license-category-response.dto';
 import { LicenseType } from '../../../domain/enums/license-type.enum';
+import { Inject, Injectable } from '@nestjs/common';
 
+@Injectable()
 export class GetLicenseCategoriesUseCase {
     constructor(
+        @Inject('ILicenseRepository')
         private readonly licenseRepository: ILicenseRepository,
     ) { }
 
@@ -17,8 +20,7 @@ export class GetLicenseCategoriesUseCase {
                     type: type,
                     name: `Hạng ${type}`,
                     description: this.getLicenseDescription(type),
-                    totalExams: examCount,
-                    iconUrl: `/assets/icons/license/${type.toLowerCase()}.png`,
+                    totalExams: examCount
                 };
             }),
         );
