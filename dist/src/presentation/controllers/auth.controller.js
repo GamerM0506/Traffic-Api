@@ -24,10 +24,10 @@ const register_request_dto_1 = require("../../application/dtos/auth/register-req
 const login_request_dto_1 = require("../../application/dtos/auth/login-request.dto");
 const jwt_auth_guard_1 = require("../guards/jwt-auth.guard");
 const current_user_decorator_1 = require("../decorators/current-user.decorator");
-const verify_account_request_dto_1 = require("../../application/dtos/auth/verify-account-request.dto");
-const forgot_password_dto_1 = require("../../application/dtos/auth/forgot-password.dto");
-const reset_password_dto_1 = require("../../application/dtos/auth/reset-password.dto");
-const change_password_request_dto_1 = require("../../application/dtos/auth/change-password-request.dto");
+const verify_account_request_dto_1 = require("src/application/dtos/auth/verify-account-request.dto");
+const forgot_password_dto_1 = require("src/application/dtos/auth/forgot-password.dto");
+const reset_password_dto_1 = require("src/application/dtos/auth/reset-password.dto");
+const change_password_request_dto_1 = require("src/application/dtos/auth/change-password-request.dto");
 let AuthController = class AuthController {
     constructor(registerUseCase, loginUseCase, verifyUseCase, forgotPasswordUseCase, resetPasswordUseCase, changePasswordUseCase) {
         this.registerUseCase = registerUseCase;

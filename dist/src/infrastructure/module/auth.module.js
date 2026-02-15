@@ -18,7 +18,7 @@ const verify_account_use_case_1 = require("../../application/use-cases/auth/veri
 const change_password_use_case_1 = require("../../application/use-cases/auth/change-password.use-case");
 const forgot_password_use_case_1 = require("../../application/use-cases/auth/forgot-password.use-case");
 const reset_password_use_case_1 = require("../../application/use-cases/auth/reset-password.use-case");
-const auth_controller_1 = require("../../presentation/controllers/auth.controller");
+const auth_controller_1 = require("src/presentation/controllers/auth.controller");
 let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;
