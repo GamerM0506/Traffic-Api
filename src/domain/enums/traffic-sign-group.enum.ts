@@ -1,0 +1,8 @@
+export enum TrafficSignGroup {
+    PROHIBITION = 'PROHIBITION',
+    DANGER = 'DANGER',
+    COMMAND = 'COMMAND',
+    INSTRUCTION = 'INSTRUCTION',
+    AUXILIARY = 'AUXILIARY',
+    MARKING = 'MARKING',           // Vạch kẻ đường
+}

@@ -1,0 +1,13 @@
+import * as Prisma from './internal/prismaNamespaceBrowser.ts';
+export { Prisma };
+export * as $Enums from './enums.ts';
+export * from './enums.ts';
+export type Question = Prisma.QuestionModel;
+export type Answer = Prisma.AnswerModel;
+export type TrafficSign = Prisma.TrafficSignModel;
+export type ExamSet = Prisma.ExamSetModel;
+export type ExamSetQuestion = Prisma.ExamSetQuestionModel;
+export type TestHistory = Prisma.TestHistoryModel;
+export type TestDetail = Prisma.TestDetailModel;
+export type UserBookmark = Prisma.UserBookmarkModel;
+export type GeneralStudyTip = Prisma.GeneralStudyTipModel;
