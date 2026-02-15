@@ -24,6 +24,7 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
+    "postinstall": "prisma generate",
     "build": "tsc",
     "start": "node dist/main.js",
     "start:dev": "nest start --watch"
