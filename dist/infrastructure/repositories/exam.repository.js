@@ -9,30 +9,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LicenseRepository = void 0;
+exports.ExamSetRepository = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../persistence/prisma.service");
-const enums_1 = require("../../domain/enums");
-const license_type_mapper_1 = require("../mappers/license-type.mapper");
-let LicenseRepository = class LicenseRepository {
+const exam_set_mapper_1 = require("../mappers/exam-set.mapper");
+let ExamSetRepository = class ExamSetRepository {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async getAllLicenseTypes() {
-        return Object.values(enums_1.LicenseType);
-    }
-    async countExamSetsByLicenseType(type) {
-        const prismaType = license_type_mapper_1.LicenseTypeMapper.toPrisma(type);
-        return this.prisma.examSet.count({
-            where: {
-                licenseType: prismaType,
-            },
+    async findById(id) {
+        const rawData = await this.prisma.examSet.findUnique({
+            where: { id },
+            include: {
+                questions: { include: { question: { include: { answers: true } } } }
+            }
         });
+        if (!rawData)
+            return null;
+        return exam_set_mapper_1.ExamSetMapper.toDomain(rawData);
+    }
+    async findByLicenseType(type) {
+        const rawSets = await this.prisma.examSet.findMany({
+            where: { licenseType: type }
+        });
+        return rawSets.map(set => exam_set_mapper_1.ExamSetMapper.toDomain(set));
     }
 };
-exports.LicenseRepository = LicenseRepository;
-exports.LicenseRepository = LicenseRepository = __decorate([
+exports.ExamSetRepository = ExamSetRepository;
+exports.ExamSetRepository = ExamSetRepository = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
-], LicenseRepository);
-//# sourceMappingURL=license.repository.js.map
+], ExamSetRepository);
+//# sourceMappingURL=exam.repository.js.map

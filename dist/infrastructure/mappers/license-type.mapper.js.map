@@ -1,0 +1,1 @@
+{"version":3,"file":"license-type.mapper.js","sourceRoot":"","sources":["../../../src/infrastructure/mappers/license-type.mapper.ts"],"names":[],"mappings":";;;AAAA,8CAAoE;AACpE,2CAAkE;AAElE,MAAa,iBAAiB;IAC1B,MAAM,CAAC,QAAQ,CAAC,IAAuB;QACnC,OAAO,oBAAiB,CAAC,IAAI,CAAC,CAAC;IACnC,CAAC;IAED,MAAM,CAAC,QAAQ,CAAC,IAAuB;QACnC,OAAO,mBAAiB,CAAC,IAAI,CAAC,CAAC;IACnC,CAAC;CACJ;AARD,8CAQC"}

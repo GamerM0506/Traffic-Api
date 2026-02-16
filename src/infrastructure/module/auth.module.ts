@@ -13,6 +13,10 @@ import { PrismaUserRepository } from '../repositories/prisma-user.repository';
 import { JwtAuthService } from '../services/jwt-auth.service';
 import { NodemailerEmailService } from '../services/nodemailer-email.service';
 import { LicenseController } from 'src/presentation/controllers/license.controller';
+import { ExamController } from 'src/presentation/controllers/exam.controller';
+import { GetExamSetsByLicenseUseCase } from 'src/application/use-cases/exam/get-exam-sets-by-license.use-case';
+import { GetExamSetDetailUseCase } from 'src/application/use-cases/exam/get-exam-set-detail.use-case';
+import { ExamSetRepository } from '../repositories/exam.repository';
 
 
 @Module({
@@ -34,6 +38,10 @@ import { LicenseController } from 'src/presentation/controllers/license.controll
             provide: 'IEmailService',
             useClass: NodemailerEmailService,
         },
+        {
+            provide: 'IExamSetRepository',
+            useClass: ExamSetRepository
+        },
         RegisterUseCase,
         LoginUseCase,
         VerifyAccountUseCase,
@@ -41,10 +49,13 @@ import { LicenseController } from 'src/presentation/controllers/license.controll
         ForgotPasswordUseCase,
         ResetPasswordUseCase,
         GetLicenseCategoriesUseCase,
+        GetExamSetsByLicenseUseCase,
+        GetExamSetDetailUseCase
     ],
     controllers: [
         AuthController,
-        LicenseController
+        LicenseController,
+        ExamController
     ],
     exports: [
         RegisterUseCase,

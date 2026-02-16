@@ -19,4 +19,6 @@ __exportStar(require("./question.repository.interface"), exports);
 __exportStar(require("./test-history.repository.interface"), exports);
 __exportStar(require("./traffic-sign.repository.interface"), exports);
 __exportStar(require("./bookmark.repository.interface"), exports);
+__exportStar(require("./exam-set.repository.interface"), exports);
+__exportStar(require("./license.repository.interface"), exports);
 //# sourceMappingURL=index.js.map

@@ -22,6 +22,10 @@ const prisma_user_repository_1 = require("../repositories/prisma-user.repository
 const jwt_auth_service_1 = require("../services/jwt-auth.service");
 const nodemailer_email_service_1 = require("../services/nodemailer-email.service");
 const license_controller_1 = require("../../presentation/controllers/license.controller");
+const exam_controller_1 = require("../../presentation/controllers/exam.controller");
+const get_exam_sets_by_license_use_case_1 = require("../../application/use-cases/exam/get-exam-sets-by-license.use-case");
+const get_exam_set_detail_use_case_1 = require("../../application/use-cases/exam/get-exam-set-detail.use-case");
+const exam_repository_1 = require("../repositories/exam.repository");
 let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;
@@ -45,6 +49,10 @@ exports.AuthModule = AuthModule = __decorate([
                 provide: 'IEmailService',
                 useClass: nodemailer_email_service_1.NodemailerEmailService,
             },
+            {
+                provide: 'IExamSetRepository',
+                useClass: exam_repository_1.ExamSetRepository
+            },
             register_use_case_1.RegisterUseCase,
             login_use_case_1.LoginUseCase,
             verify_account_use_case_1.VerifyAccountUseCase,
@@ -52,10 +60,13 @@ exports.AuthModule = AuthModule = __decorate([
             forgot_password_use_case_1.ForgotPasswordUseCase,
             reset_password_use_case_1.ResetPasswordUseCase,
             get_license_categories_use_case_1.GetLicenseCategoriesUseCase,
+            get_exam_sets_by_license_use_case_1.GetExamSetsByLicenseUseCase,
+            get_exam_set_detail_use_case_1.GetExamSetDetailUseCase
         ],
         controllers: [
             auth_controller_1.AuthController,
-            license_controller_1.LicenseController
+            license_controller_1.LicenseController,
+            exam_controller_1.ExamController
         ],
         exports: [
             register_use_case_1.RegisterUseCase,
