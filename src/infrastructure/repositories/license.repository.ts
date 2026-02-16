@@ -1,8 +1,8 @@
-import { Injectable } from "@nestjs/common";
-import { ILicenseRepository } from "src/domain/repositories/license.repository.interface";
-import { PrismaService } from "../persistence/prisma.service";
-import { LicenseType as DomainLicenseType } from "src/domain/enums";
-import { LicenseType as PrismaLicenseType } from '@prisma/client';
+import { Injectable } from '@nestjs/common';
+import { ILicenseRepository } from 'src/domain/repositories/license.repository.interface';
+import { PrismaService } from '../persistence/prisma.service';
+import { LicenseType as DomainLicenseType } from 'src/domain/enums';
+import { LicenseTypeMapper } from '../mappers/license-type.mapper';
 
 @Injectable()
 export class LicenseRepository implements ILicenseRepository {
@@ -12,13 +12,15 @@ export class LicenseRepository implements ILicenseRepository {
         return Object.values(DomainLicenseType);
     }
 
-    async countExamSetsByLicenseType(type: DomainLicenseType): Promise<number> {
-        const prismaType = type as unknown as PrismaLicenseType;
+    async countExamSetsByLicenseType(
+        type: DomainLicenseType,
+    ): Promise<number> {
+        const prismaType = LicenseTypeMapper.toPrisma(type);
 
         return this.prisma.examSet.count({
             where: {
                 licenseType: prismaType,
-            }
-        })
+            },
+        });
     }
 }
