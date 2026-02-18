@@ -22,7 +22,7 @@ export class DomainExceptionFilter implements ExceptionFilter {
         }
 
         if (status === 500) {
-            console.error('🔥 System Error:', exception);
+            console.error('System Error:', exception);
         }
 
         response.status(status).json({

@@ -152,7 +152,6 @@ model TestHistory {
   user              User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   examSet           ExamSet?    @relation(fields: [examSetId], references: [id])
   details           TestDetail[]
-
   @@map("test_history")
   @@index([userId])
 }

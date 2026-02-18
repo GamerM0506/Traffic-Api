@@ -20,7 +20,7 @@ async function bootstrap() {
             forbidNonWhitelisted: true,
         }),
     );
-    app.useGlobalFilters(new DomainExceptionFilter());
+    // app.useGlobalFilters(new DomainExceptionFilter());
     const port = process.env.PORT || 3000;
     await app.listen(port, '0.0.0.0');
     console.log(`🚀 Server is "on air" at: https://your-railway-link.up.railway.app/api/v1`);

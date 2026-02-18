@@ -22,4 +22,5 @@ __exportStar(require("./user-bookmark.entity"), exports);
 __exportStar(require("./traffic-sign.entity"), exports);
 __exportStar(require("./study-tip.entity"), exports);
 __exportStar(require("./exam-set.entity"), exports);
+__exportStar(require("./test-detail.entity"), exports);
 //# sourceMappingURL=index.js.map

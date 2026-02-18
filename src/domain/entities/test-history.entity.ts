@@ -1,5 +1,6 @@
 import { LicenseType, TestStatus } from '../enums';
 import { TestScore } from '../value-objects';
+import { TestDetail } from './test-detail.entity';
 
 export class TestHistory {
     constructor(
@@ -9,6 +10,7 @@ export class TestHistory {
         public readonly score: TestScore,
         public readonly isParalysisFailed: boolean,
         public readonly durationSeconds: number,
+        public readonly details: TestDetail[] = [],
         public readonly examSetId?: number | null,
         public readonly createdAt?: Date
     ) { }
@@ -22,8 +24,11 @@ export class TestHistory {
             [LicenseType.B1]: 27,
             [LicenseType.B2]: 32,
             [LicenseType.C]: 37,
-            [LicenseType.A3]: 23, [LicenseType.A4]: 23,
-            [LicenseType.D]: 42, [LicenseType.E]: 42, [LicenseType.F]: 42
+            [LicenseType.A3]: 23, 
+            [LicenseType.A4]: 23,
+            [LicenseType.D]: 42, 
+            [LicenseType.E]: 42, 
+            [LicenseType.F]: 42
         };
 
         const passScore = requirements[this.licenseType];

@@ -26,6 +26,11 @@ const exam_controller_1 = require("../../presentation/controllers/exam.controlle
 const get_exam_sets_by_license_use_case_1 = require("../../application/use-cases/exam/get-exam-sets-by-license.use-case");
 const get_exam_set_detail_use_case_1 = require("../../application/use-cases/exam/get-exam-set-detail.use-case");
 const exam_repository_1 = require("../repositories/exam.repository");
+const test_history_repository_1 = require("../repositories/test-history.repository");
+const get_latest_result_use_case_1 = require("../../application/use-cases/test-history/get-latest-result.use-case");
+const save_test_result_use_case_1 = require("../../application/use-cases/test-history/save-test-result.use-case");
+const test_history_controller_1 = require("../../presentation/controllers/test-history.controller");
+const get_test_history_detail_use_case_1 = require("../../application/use-cases/test-history/get-test-history-detail.use-case");
 let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;
@@ -53,6 +58,10 @@ exports.AuthModule = AuthModule = __decorate([
                 provide: 'IExamSetRepository',
                 useClass: exam_repository_1.ExamSetRepository
             },
+            {
+                provide: 'ITestHistoryRepository',
+                useClass: test_history_repository_1.TestHistoryRepository
+            },
             register_use_case_1.RegisterUseCase,
             login_use_case_1.LoginUseCase,
             verify_account_use_case_1.VerifyAccountUseCase,
@@ -61,12 +70,16 @@ exports.AuthModule = AuthModule = __decorate([
             reset_password_use_case_1.ResetPasswordUseCase,
             get_license_categories_use_case_1.GetLicenseCategoriesUseCase,
             get_exam_sets_by_license_use_case_1.GetExamSetsByLicenseUseCase,
-            get_exam_set_detail_use_case_1.GetExamSetDetailUseCase
+            get_exam_set_detail_use_case_1.GetExamSetDetailUseCase,
+            get_latest_result_use_case_1.GetLatestResultUseCase,
+            save_test_result_use_case_1.SaveTestResultUseCase,
+            get_test_history_detail_use_case_1.GetTestHistoryDetailUseCase
         ],
         controllers: [
             auth_controller_1.AuthController,
             license_controller_1.LicenseController,
-            exam_controller_1.ExamController
+            exam_controller_1.ExamController,
+            test_history_controller_1.TestHistoryController
         ],
         exports: [
             register_use_case_1.RegisterUseCase,
@@ -76,6 +89,9 @@ exports.AuthModule = AuthModule = __decorate([
             forgot_password_use_case_1.ForgotPasswordUseCase,
             reset_password_use_case_1.ResetPasswordUseCase,
             get_license_categories_use_case_1.GetLicenseCategoriesUseCase,
+            get_latest_result_use_case_1.GetLatestResultUseCase,
+            save_test_result_use_case_1.SaveTestResultUseCase,
+            get_test_history_detail_use_case_1.GetTestHistoryDetailUseCase
         ],
     })
 ], AuthModule);

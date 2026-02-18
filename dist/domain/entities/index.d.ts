@@ -6,3 +6,4 @@ export * from './user-bookmark.entity';
 export * from './traffic-sign.entity';
 export * from './study-tip.entity';
 export * from './exam-set.entity';
+export * from './test-detail.entity';

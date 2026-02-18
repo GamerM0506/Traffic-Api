@@ -17,6 +17,11 @@ import { ExamController } from 'src/presentation/controllers/exam.controller';
 import { GetExamSetsByLicenseUseCase } from 'src/application/use-cases/exam/get-exam-sets-by-license.use-case';
 import { GetExamSetDetailUseCase } from 'src/application/use-cases/exam/get-exam-set-detail.use-case';
 import { ExamSetRepository } from '../repositories/exam.repository';
+import { TestHistoryRepository } from '../repositories/test-history.repository';
+import { GetLatestResultUseCase } from 'src/application/use-cases/test-history/get-latest-result.use-case';
+import { SaveTestResultUseCase } from 'src/application/use-cases/test-history/save-test-result.use-case';
+import { TestHistoryController } from 'src/presentation/controllers/test-history.controller';
+import { GetTestHistoryDetailUseCase } from 'src/application/use-cases/test-history/get-test-history-detail.use-case';
 
 
 @Module({
@@ -42,6 +47,10 @@ import { ExamSetRepository } from '../repositories/exam.repository';
             provide: 'IExamSetRepository',
             useClass: ExamSetRepository
         },
+        {
+            provide:'ITestHistoryRepository',
+            useClass: TestHistoryRepository
+        },
         RegisterUseCase,
         LoginUseCase,
         VerifyAccountUseCase,
@@ -50,12 +59,16 @@ import { ExamSetRepository } from '../repositories/exam.repository';
         ResetPasswordUseCase,
         GetLicenseCategoriesUseCase,
         GetExamSetsByLicenseUseCase,
-        GetExamSetDetailUseCase
+        GetExamSetDetailUseCase,
+        GetLatestResultUseCase,
+        SaveTestResultUseCase,
+        GetTestHistoryDetailUseCase
     ],
     controllers: [
         AuthController,
         LicenseController,
-        ExamController
+        ExamController,
+        TestHistoryController
     ],
     exports: [
         RegisterUseCase,
@@ -65,6 +78,9 @@ import { ExamSetRepository } from '../repositories/exam.repository';
         ForgotPasswordUseCase,
         ResetPasswordUseCase,
         GetLicenseCategoriesUseCase,
+        GetLatestResultUseCase,
+        SaveTestResultUseCase,
+        GetTestHistoryDetailUseCase
     ],
 })
 export class AuthModule { }
