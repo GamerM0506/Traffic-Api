@@ -31,6 +31,7 @@ const get_latest_result_use_case_1 = require("../../application/use-cases/test-h
 const save_test_result_use_case_1 = require("../../application/use-cases/test-history/save-test-result.use-case");
 const test_history_controller_1 = require("../../presentation/controllers/test-history.controller");
 const get_test_history_detail_use_case_1 = require("../../application/use-cases/test-history/get-test-history-detail.use-case");
+const calculate_test_result_use_case_1 = require("../../application/use-cases/test-history/calculate-test-result.use-case");
 let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;
@@ -73,7 +74,8 @@ exports.AuthModule = AuthModule = __decorate([
             get_exam_set_detail_use_case_1.GetExamSetDetailUseCase,
             get_latest_result_use_case_1.GetLatestResultUseCase,
             save_test_result_use_case_1.SaveTestResultUseCase,
-            get_test_history_detail_use_case_1.GetTestHistoryDetailUseCase
+            get_test_history_detail_use_case_1.GetTestHistoryDetailUseCase,
+            calculate_test_result_use_case_1.CalculateTestResultUseCase
         ],
         controllers: [
             auth_controller_1.AuthController,
@@ -91,7 +93,8 @@ exports.AuthModule = AuthModule = __decorate([
             get_license_categories_use_case_1.GetLicenseCategoriesUseCase,
             get_latest_result_use_case_1.GetLatestResultUseCase,
             save_test_result_use_case_1.SaveTestResultUseCase,
-            get_test_history_detail_use_case_1.GetTestHistoryDetailUseCase
+            get_test_history_detail_use_case_1.GetTestHistoryDetailUseCase,
+            calculate_test_result_use_case_1.CalculateTestResultUseCase
         ],
     })
 ], AuthModule);

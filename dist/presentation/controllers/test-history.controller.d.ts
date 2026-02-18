@@ -3,11 +3,20 @@ import { GetLatestResultUseCase } from '../../application/use-cases/test-history
 import { GetTestHistoryDetailUseCase } from '../../application/use-cases/test-history/get-test-history-detail.use-case';
 import { SaveTestResultRequestDto } from '../../application/dtos/test-history/save-test-result.dto';
 import { LicenseType } from 'src/domain/enums';
+import { CalculateTestResultUseCase } from 'src/application/use-cases/test-history/calculate-test-result.use-case';
 export declare class TestHistoryController {
     private readonly saveResultUseCase;
     private readonly getLatestUseCase;
     private readonly getDetailUseCase;
-    constructor(saveResultUseCase: SaveTestResultUseCase, getLatestUseCase: GetLatestResultUseCase, getDetailUseCase: GetTestHistoryDetailUseCase);
+    private readonly calculateUseCase;
+    constructor(saveResultUseCase: SaveTestResultUseCase, getLatestUseCase: GetLatestResultUseCase, getDetailUseCase: GetTestHistoryDetailUseCase, calculateUseCase: CalculateTestResultUseCase);
+    calculate(body: SaveTestResultRequestDto): {
+        status: import("src/domain/enums").TestStatus;
+        score: number;
+        totalQuestions: number;
+        isParalysisFailed: boolean;
+        message: string;
+    };
     save(user: any, body: SaveTestResultRequestDto): Promise<{
         id: number;
         userId: number;

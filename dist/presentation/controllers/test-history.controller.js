@@ -21,11 +21,16 @@ const save_test_result_dto_1 = require("../../application/dtos/test-history/save
 const enums_1 = require("../../domain/enums");
 const current_user_decorator_1 = require("../decorators/current-user.decorator");
 const jwt_auth_guard_1 = require("../guards/jwt-auth.guard");
+const calculate_test_result_use_case_1 = require("../../application/use-cases/test-history/calculate-test-result.use-case");
 let TestHistoryController = class TestHistoryController {
-    constructor(saveResultUseCase, getLatestUseCase, getDetailUseCase) {
+    constructor(saveResultUseCase, getLatestUseCase, getDetailUseCase, calculateUseCase) {
         this.saveResultUseCase = saveResultUseCase;
         this.getLatestUseCase = getLatestUseCase;
         this.getDetailUseCase = getDetailUseCase;
+        this.calculateUseCase = calculateUseCase;
+    }
+    calculate(body) {
+        return this.calculateUseCase.execute(body);
     }
     async save(user, body) {
         console.log('User từ Decorator:', user);
@@ -40,6 +45,14 @@ let TestHistoryController = class TestHistoryController {
 };
 exports.TestHistoryController = TestHistoryController;
 __decorate([
+    (0, common_1.Post)('calculate'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [save_test_result_dto_1.SaveTestResultRequestDto]),
+    __metadata("design:returntype", void 0)
+], TestHistoryController.prototype, "calculate", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)(),
     __param(0, (0, current_user_decorator_1.CurrentUser)()),
     __param(1, (0, common_1.Body)()),
@@ -65,9 +78,9 @@ __decorate([
 ], TestHistoryController.prototype, "getDetail", null);
 exports.TestHistoryController = TestHistoryController = __decorate([
     (0, common_1.Controller)('test-history'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __metadata("design:paramtypes", [save_test_result_use_case_1.SaveTestResultUseCase,
         get_latest_result_use_case_1.GetLatestResultUseCase,
-        get_test_history_detail_use_case_1.GetTestHistoryDetailUseCase])
+        get_test_history_detail_use_case_1.GetTestHistoryDetailUseCase,
+        calculate_test_result_use_case_1.CalculateTestResultUseCase])
 ], TestHistoryController);
 //# sourceMappingURL=test-history.controller.js.map

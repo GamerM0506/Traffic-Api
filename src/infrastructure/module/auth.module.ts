@@ -22,6 +22,7 @@ import { GetLatestResultUseCase } from 'src/application/use-cases/test-history/g
 import { SaveTestResultUseCase } from 'src/application/use-cases/test-history/save-test-result.use-case';
 import { TestHistoryController } from 'src/presentation/controllers/test-history.controller';
 import { GetTestHistoryDetailUseCase } from 'src/application/use-cases/test-history/get-test-history-detail.use-case';
+import { CalculateTestResultUseCase } from 'src/application/use-cases/test-history/calculate-test-result.use-case';
 
 
 @Module({
@@ -62,7 +63,8 @@ import { GetTestHistoryDetailUseCase } from 'src/application/use-cases/test-hist
         GetExamSetDetailUseCase,
         GetLatestResultUseCase,
         SaveTestResultUseCase,
-        GetTestHistoryDetailUseCase
+        GetTestHistoryDetailUseCase,
+        CalculateTestResultUseCase
     ],
     controllers: [
         AuthController,
@@ -80,7 +82,8 @@ import { GetTestHistoryDetailUseCase } from 'src/application/use-cases/test-hist
         GetLicenseCategoriesUseCase,
         GetLatestResultUseCase,
         SaveTestResultUseCase,
-        GetTestHistoryDetailUseCase
+        GetTestHistoryDetailUseCase,
+        CalculateTestResultUseCase
     ],
 })
 export class AuthModule { }

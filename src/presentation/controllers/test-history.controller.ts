@@ -6,16 +6,23 @@ import { SaveTestResultRequestDto } from '../../application/dtos/test-history/sa
 import { LicenseType } from 'src/domain/enums';
 import { CurrentUser } from '../decorators/current-user.decorator';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
+import { CalculateTestResultUseCase } from 'src/application/use-cases/test-history/calculate-test-result.use-case';
 
 @Controller('test-history')
-@UseGuards(JwtAuthGuard)
 export class TestHistoryController {
     constructor(
         private readonly saveResultUseCase: SaveTestResultUseCase,
         private readonly getLatestUseCase: GetLatestResultUseCase,
         private readonly getDetailUseCase: GetTestHistoryDetailUseCase,
+        private readonly calculateUseCase: CalculateTestResultUseCase,
     ) { }
 
+    @Post('calculate')
+    calculate(@Body() body: SaveTestResultRequestDto) {
+        return this.calculateUseCase.execute(body);
+    }
+
+    @UseGuards(JwtAuthGuard)
     @Post()
     async save(
         @CurrentUser() user: any,
