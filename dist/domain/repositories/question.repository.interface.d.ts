@@ -6,4 +6,10 @@ export interface IQuestionRepository {
     findParalysisQuestions(licenseType: LicenseType): Promise<Question[]>;
     findByGroup(group: QuestionGroup): Promise<Question[]>;
     searchByContent(keyword: string): Promise<Question[]>;
+    findRandom(params: {
+        licenseType: LicenseType;
+        group: QuestionGroup;
+        limit: number;
+        isParalysis?: boolean;
+    }): Promise<Question[]>;
 }

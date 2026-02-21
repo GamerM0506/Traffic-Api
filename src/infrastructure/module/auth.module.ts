@@ -23,6 +23,11 @@ import { SaveTestResultUseCase } from 'src/application/use-cases/test-history/sa
 import { TestHistoryController } from 'src/presentation/controllers/test-history.controller';
 import { GetTestHistoryDetailUseCase } from 'src/application/use-cases/test-history/get-test-history-detail.use-case';
 import { CalculateTestResultUseCase } from 'src/application/use-cases/test-history/calculate-test-result.use-case';
+import { GenerateRandomExamUseCase } from 'src/application/use-cases/exam/generate-random-exam.use-case';
+import { GetTrafficSignCategoriesUseCase } from 'src/application/use-cases/traffic-sign/get-traffic-sign-categories.use-case';
+import { TrafficSignController } from 'src/presentation/controllers/traffic-sign.controller';
+import { TrafficSignRepository } from '../repositories/traffic-sign.repository';
+import { GetTrafficSignsByGroupUseCase } from 'src/application/use-cases/traffic-sign/get-traffic-signs.use-case';
 
 
 @Module({
@@ -49,8 +54,12 @@ import { CalculateTestResultUseCase } from 'src/application/use-cases/test-histo
             useClass: ExamSetRepository
         },
         {
-            provide:'ITestHistoryRepository',
+            provide: 'ITestHistoryRepository',
             useClass: TestHistoryRepository
+        },
+        {
+            provide: 'ITrafficSignRepository',
+            useClass: TrafficSignRepository
         },
         RegisterUseCase,
         LoginUseCase,
@@ -64,13 +73,17 @@ import { CalculateTestResultUseCase } from 'src/application/use-cases/test-histo
         GetLatestResultUseCase,
         SaveTestResultUseCase,
         GetTestHistoryDetailUseCase,
-        CalculateTestResultUseCase
+        CalculateTestResultUseCase,
+        GenerateRandomExamUseCase,
+        GetTrafficSignCategoriesUseCase,
+        GetTrafficSignsByGroupUseCase
     ],
     controllers: [
         AuthController,
         LicenseController,
         ExamController,
-        TestHistoryController
+        TestHistoryController,
+        TrafficSignController
     ],
     exports: [
         RegisterUseCase,
@@ -83,7 +96,10 @@ import { CalculateTestResultUseCase } from 'src/application/use-cases/test-histo
         GetLatestResultUseCase,
         SaveTestResultUseCase,
         GetTestHistoryDetailUseCase,
-        CalculateTestResultUseCase
+        CalculateTestResultUseCase,
+        GenerateRandomExamUseCase,
+        GetTrafficSignCategoriesUseCase,
+        GetTrafficSignsByGroupUseCase
     ],
 })
 export class AuthModule { }

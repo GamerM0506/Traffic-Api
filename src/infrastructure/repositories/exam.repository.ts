@@ -2,8 +2,8 @@ import { Injectable } from "@nestjs/common";
 import { IExamSetRepository } from "src/domain/repositories";
 import { PrismaService } from "../persistence/prisma.service";
 import { ExamSetMapper } from "../mappers/exam-set.mapper";
-import { ExamSet } from "src/domain/entities";
-import { LicenseType as DomainLicenseType } from "src/domain/enums";
+import { ExamSet, Question } from "src/domain/entities";
+import { LicenseType as DomainLicenseType, QuestionGroup } from "src/domain/enums";
 
 @Injectable()
 export class ExamSetRepository implements IExamSetRepository {
@@ -27,5 +27,38 @@ export class ExamSetRepository implements IExamSetRepository {
         });
 
         return rawSets.map(set => ExamSetMapper.toDomain(set));
+    }
+
+    async findRandom(params: {
+        licenseType: DomainLicenseType;
+        group: QuestionGroup;
+        limit: number;
+        isParalysis?: boolean;
+    }): Promise<Question[]> {
+        const { licenseType, group, limit, isParalysis } = params;
+
+        const questionsRaw = await this.prisma.question.findMany({
+            where: {
+                group: group as any,
+                isParalysis: isParalysis !== undefined ? isParalysis : undefined,
+                examSetQuestions: {
+                    some: {
+                        examSet: {
+                            licenseType: licenseType as any
+                        }
+                    }
+                }
+            },
+            include: {
+                answers: true
+            }
+        });
+
+        if (!questionsRaw.length) return [];
+
+        return questionsRaw
+            .sort(() => Math.random() - 0.5)
+            .slice(0, limit)
+            .map(q => ExamSetMapper.toDomainQuestion(q as any));
     }
 }

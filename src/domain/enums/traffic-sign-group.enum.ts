@@ -4,5 +4,5 @@ export enum TrafficSignGroup {
     COMMAND = 'COMMAND',
     INSTRUCTION = 'INSTRUCTION',
     AUXILIARY = 'AUXILIARY',
-    MARKING = 'MARKING',           // Vạch kẻ đường
+    MARKING = 'MARKING',         
 }

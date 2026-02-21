@@ -17,13 +17,18 @@ const common_1 = require("@nestjs/common");
 const get_exam_sets_by_license_use_case_1 = require("../../application/use-cases/exam/get-exam-sets-by-license.use-case");
 const get_exam_set_detail_use_case_1 = require("../../application/use-cases/exam/get-exam-set-detail.use-case");
 const enums_1 = require("../../domain/enums");
+const generate_random_exam_use_case_1 = require("../../application/use-cases/exam/generate-random-exam.use-case");
 let ExamController = class ExamController {
-    constructor(getExamSetsUseCase, getExamDetailUseCase) {
+    constructor(getExamSetsUseCase, getExamDetailUseCase, generateRandomUseCase) {
         this.getExamSetsUseCase = getExamSetsUseCase;
         this.getExamDetailUseCase = getExamDetailUseCase;
+        this.generateRandomUseCase = generateRandomUseCase;
     }
     async getSets(type) {
         return await this.getExamSetsUseCase.execute(type);
+    }
+    async generateRandom(type) {
+        return await this.generateRandomUseCase.execute(type);
     }
     async getDetail(id) {
         return await this.getExamDetailUseCase.execute(id);
@@ -38,6 +43,13 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ExamController.prototype, "getSets", null);
 __decorate([
+    (0, common_1.Get)('random'),
+    __param(0, (0, common_1.Query)('type')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ExamController.prototype, "generateRandom", null);
+__decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
@@ -47,6 +59,7 @@ __decorate([
 exports.ExamController = ExamController = __decorate([
     (0, common_1.Controller)('exams'),
     __metadata("design:paramtypes", [get_exam_sets_by_license_use_case_1.GetExamSetsByLicenseUseCase,
-        get_exam_set_detail_use_case_1.GetExamSetDetailUseCase])
+        get_exam_set_detail_use_case_1.GetExamSetDetailUseCase,
+        generate_random_exam_use_case_1.GenerateRandomExamUseCase])
 ], ExamController);
 //# sourceMappingURL=exam.controller.js.map

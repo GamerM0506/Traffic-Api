@@ -34,6 +34,31 @@ let ExamSetRepository = class ExamSetRepository {
         });
         return rawSets.map(set => exam_set_mapper_1.ExamSetMapper.toDomain(set));
     }
+    async findRandom(params) {
+        const { licenseType, group, limit, isParalysis } = params;
+        const questionsRaw = await this.prisma.question.findMany({
+            where: {
+                group: group,
+                isParalysis: isParalysis !== undefined ? isParalysis : undefined,
+                examSetQuestions: {
+                    some: {
+                        examSet: {
+                            licenseType: licenseType
+                        }
+                    }
+                }
+            },
+            include: {
+                answers: true
+            }
+        });
+        if (!questionsRaw.length)
+            return [];
+        return questionsRaw
+            .sort(() => Math.random() - 0.5)
+            .slice(0, limit)
+            .map(q => exam_set_mapper_1.ExamSetMapper.toDomainQuestion(q));
+    }
 };
 exports.ExamSetRepository = ExamSetRepository;
 exports.ExamSetRepository = ExamSetRepository = __decorate([

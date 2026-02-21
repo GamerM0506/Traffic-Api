@@ -32,6 +32,11 @@ const save_test_result_use_case_1 = require("../../application/use-cases/test-hi
 const test_history_controller_1 = require("../../presentation/controllers/test-history.controller");
 const get_test_history_detail_use_case_1 = require("../../application/use-cases/test-history/get-test-history-detail.use-case");
 const calculate_test_result_use_case_1 = require("../../application/use-cases/test-history/calculate-test-result.use-case");
+const generate_random_exam_use_case_1 = require("../../application/use-cases/exam/generate-random-exam.use-case");
+const get_traffic_sign_categories_use_case_1 = require("../../application/use-cases/traffic-sign/get-traffic-sign-categories.use-case");
+const traffic_sign_controller_1 = require("../../presentation/controllers/traffic-sign.controller");
+const traffic_sign_repository_1 = require("../repositories/traffic-sign.repository");
+const get_traffic_signs_use_case_1 = require("../../application/use-cases/traffic-sign/get-traffic-signs.use-case");
 let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;
@@ -63,6 +68,10 @@ exports.AuthModule = AuthModule = __decorate([
                 provide: 'ITestHistoryRepository',
                 useClass: test_history_repository_1.TestHistoryRepository
             },
+            {
+                provide: 'ITrafficSignRepository',
+                useClass: traffic_sign_repository_1.TrafficSignRepository
+            },
             register_use_case_1.RegisterUseCase,
             login_use_case_1.LoginUseCase,
             verify_account_use_case_1.VerifyAccountUseCase,
@@ -75,13 +84,17 @@ exports.AuthModule = AuthModule = __decorate([
             get_latest_result_use_case_1.GetLatestResultUseCase,
             save_test_result_use_case_1.SaveTestResultUseCase,
             get_test_history_detail_use_case_1.GetTestHistoryDetailUseCase,
-            calculate_test_result_use_case_1.CalculateTestResultUseCase
+            calculate_test_result_use_case_1.CalculateTestResultUseCase,
+            generate_random_exam_use_case_1.GenerateRandomExamUseCase,
+            get_traffic_sign_categories_use_case_1.GetTrafficSignCategoriesUseCase,
+            get_traffic_signs_use_case_1.GetTrafficSignsByGroupUseCase
         ],
         controllers: [
             auth_controller_1.AuthController,
             license_controller_1.LicenseController,
             exam_controller_1.ExamController,
-            test_history_controller_1.TestHistoryController
+            test_history_controller_1.TestHistoryController,
+            traffic_sign_controller_1.TrafficSignController
         ],
         exports: [
             register_use_case_1.RegisterUseCase,
@@ -94,7 +107,10 @@ exports.AuthModule = AuthModule = __decorate([
             get_latest_result_use_case_1.GetLatestResultUseCase,
             save_test_result_use_case_1.SaveTestResultUseCase,
             get_test_history_detail_use_case_1.GetTestHistoryDetailUseCase,
-            calculate_test_result_use_case_1.CalculateTestResultUseCase
+            calculate_test_result_use_case_1.CalculateTestResultUseCase,
+            generate_random_exam_use_case_1.GenerateRandomExamUseCase,
+            get_traffic_sign_categories_use_case_1.GetTrafficSignCategoriesUseCase,
+            get_traffic_signs_use_case_1.GetTrafficSignsByGroupUseCase
         ],
     })
 ], AuthModule);

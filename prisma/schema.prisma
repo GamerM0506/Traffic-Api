@@ -115,7 +115,6 @@ model TrafficSign {
   imageUrl    String     @map("image_url")
   group       TrafficSignGroup @map("group")
   questions   Question[]
-
   @@map("traffic_signs")
 }
 
